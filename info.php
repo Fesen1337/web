@@ -34,10 +34,11 @@ $sql_update_dost = "UPDATE dostijeniya
 
 $count = $pdo->prepare($sql_update_dost); // готовим запрос
 
-// $tmp_index = implode($_POST);      // готовим данные
-$tmp_index1 = (int)$tmp_index;     // готовим данные
-$tmp_kod_podver = 1; 
-$count->execute(array($tmp_kod_podver,$tmp_index1)); // делаем обновление
-echo "Подтвежден";
+$input = json_decode(file_get_contents("php://input"), true);
+
+$tmp_index = (int)$_POST['res'];      // готовим данные
+$tmp_kod_podver = (int)$_POST['val']; 
+$count->execute(array($tmp_kod_podver,$tmp_index)); // делаем обновление
+echo $input;
  
 ?>

@@ -33,9 +33,9 @@ if (!empty($_SESSION['id'])&&($_SESSION['Tip_user']=="Администратор
                     url:     url, //Адрес подгружаемой страницы
                     type:     "POST", //Тип запроса
                     dataType: "html", //Тип данных
-                    data: jQuery("#"+form_id).serialize(), 
+                    data: { res: result_id, val: form_id}, 
                     success: function(response) { //Если все нормально
-                    document.getElementById(result_id).innerHTML = response;
+                    // document.getElementById(result_id).innerHTML = response;
                 },
                 error: function(response) { //Если ошибка
                 document.getElementById(result_id).innerHTML = "Ошибка при отправке формы";
@@ -120,8 +120,8 @@ $sql_select3 = "SELECT * FROM `dostijeniya` LIMIT 0, 50 ";
 $stmt = $pdo->query($sql_select3);
 while ($row = $stmt->fetch())
   {  // в цикле перебираем весь массив
-    // $tmp_index = $row['Kod_dostijeniya'];
-    //   $_POST['$tmp_index'] = $tmp_index;
+    $tmp_index = $row['Kod_dostijeniya'];
+      $_POST['$tmp_index'] = $tmp_index;
       $tmp_id = $row['Kod_user'];
     ?>
                 <tr>
@@ -142,7 +142,7 @@ while ($row = $stmt->fetch())
                }   
                 ?>
 
-<?php echo $tmp_v?>
+<?php echo $tmp_id?>
                 </td>
                   <td><?php echo $row['Name_dostijeniya'];?></td>
                   <td><?php echo $row['Name_yrovnya'];?></td>
@@ -240,13 +240,23 @@ while ($row_n = $stmt_n->fetch())
 <!-- завершение всплывашек -->
                 
                   </td>
+                  <td><?php echo $row['Kod_dostijeniya'];?></td>
                   <td><?php echo $row['Data_nachala'];?></td>
                   <td><?php echo $row['Data_konec'];?></td>
                   <td><?php echo 
                          substr($row['Komment'], 0, 20);
                          // режем комментарии до 20 символов
                   ?></td>
-               <?php    if ($row['Kod_podtverjdeniya']==1) 
+               <?php
+                    if ($row['Kod_podtverjdeniya']==0) {
+                      $color='red';
+                      $kod=1;
+                    }else{
+                      $color='green';
+                      $kod=0;
+                    }
+
+                    if ($row['Kod_podtverjdeniya']==2) 
                {?>
                   <td class="f_green" id="yes">Подтвежден</td>
                   <?
@@ -257,17 +267,17 @@ while ($row_n = $stmt_n->fetch())
                   <? //echo $_POST['$tmp_index']; 
 
                   ?>
-       <!--  <div id="id<? echo $_POST['$tmp_index']; ?>">
+         <div id="id<? echo $_POST['$tmp_index']; ?>">
             Тут будет вывод нашей формы<br/>
           
             
-        </div> -->
+        <!-- </div>  -->
         <br/><br/>
         <form method="post" action="" id="f_id<? echo $_POST['$tmp_index']; ?>">
            <!--  Имя: <input type="text" name="name" value="Антон" /><br/> -->
            <!--  Телефон: <input type="text" name="phone" value="8(916)124-234-122" /><br/> -->
           <!--   Сайт: <input type="text" name="site" value="http://ox2.ru/" /><br/> -->
-            <input type="button" value="Подтвердить" onclick="AjaxFormRequest('id<? echo $_POST['$tmp_index']; ?>', 'f_id<? echo $_POST['$tmp_index']; ?>', 'info.php')" />
+            <input type="button" style="background-color:<? echo $color ?>" value="Подтвердить" onclick="AjaxFormRequest('<? echo $_POST['$tmp_index']; ?>', '<? echo $kod; ?>', 'info.php');location.reload()" />
         </form>
   
   
@@ -308,10 +318,15 @@ while ($row_n = $stmt_n->fetch())
                 jQuery.ajax({
                     url:     url, //Адрес подгружаемой страницы
                     type:     "POST", //Тип запроса
-                    dataType: "html", //Тип данных
-                    data: jQuery("#"+form_id).serialize(), 
+                    dataType: "json", //Тип данных
+                    // data: jQuery("#"+form_id).serialize(),
+                    JSON.stringify({ res: result_id })
+                    // data: { res: result_id}
                     success: function(response) { //Если все нормально
-                    document.getElementById(result_id).innerHTML = response;
+                      window.location = 'admin.php';
+                      // $( "#results" ).append( response );
+                    // console.error(result_id);
+                    // document.body.innerHTML = result_id;
                 },
                 error: function(response) { //Если ошибка
                 document.getElementById(result_id).innerHTML = "Ошибка при отправке формы";

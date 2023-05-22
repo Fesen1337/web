@@ -28,7 +28,7 @@ if ($tmp_set==100) {
   // print_r($_POST);
   // echo "</pre>";
  
-$tmp_kod_podver = 1; // код подвержения 0 не подтвержден по умолчанию
+$tmp_kod_podver = 0; // код подвержения 0 не подтвержден по умолчанию
 $sql_insert_dost = 'INSERT INTO `dostijeniya`
                  SET 
                   `Name_dostijeniya` = "'.$_POST['Name_dostijeniya'].'",
@@ -38,6 +38,7 @@ $sql_insert_dost = 'INSERT INTO `dostijeniya`
                   `Data_konec` = "'.$_POST['Data_konec'].'",
                   `Kod_kriteriya` = "'.$_POST['Kod_kriteriya'].'",
                   `Komment` = "'.$_POST['Komment'].'",
+                  `Kod_file` = 123,
                   `Kod_podtverjdeniya` = "'.$tmp_kod_podver.'",
                   `Kod_user` = "'.$_SESSION['id'].'"
                  ';
