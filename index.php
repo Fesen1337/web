@@ -26,20 +26,24 @@ session_start(); // стратуем сессию, чтобы использов
         <header class="f_header"> 
         <div class="f_users">
 
-			<p>Пользователь,  
-			      <?php if (!empty($_SESSION['id'])) 
+			<p>Пользователь:  
+			      <?php 
+				  echo nl2br("\n");
+				  if (!empty($_SESSION['id'])) 
 			      // тут понятно и просто
 			      // если авторизован выводим ФИО пользователя
 			      {
 			      echo $_SESSION['Familiya'];
-			      echo "  ";
+			      echo nl2br("\n");
 			      echo $_SESSION['Name'];
-			      echo "  ";
+			      echo nl2br("\n");
 			      echo $_SESSION['Otchestvo'];
                     }
-                    else
+                    else{
                     	// если же нет, то выводим как гость
                     	echo "Гость";
+						echo nl2br("\n\n\n");
+					}
 			      ?>
 			</p>
 		</div>
@@ -61,7 +65,7 @@ session_start(); // стратуем сессию, чтобы использов
 			     
 	                 <li><a  href="chek.php">Личный кабинет</a> </li>
                  <?php }?>
-                  <li><a  href="admin.php">Администратор</a> </li>
+                  <!-- <li><a  href="admin.php">Администратор</a> </li> -->
                   <li>
 			<form action="" method="post">
 			<button class="f_exit" type="submit" name="exit" value="999">Выход </button>
@@ -173,7 +177,7 @@ if ($tmp_counter==5) break; // так как топ 5 прекращаем вы�
     </div>
  <!-- end content -->
  <div class="container">
-      <div class ="f_footer">
+      <div class ="f_footer" style = "bottom: 0;position:absolute;">
         <p> © Все права защищены 2023г. разработчиками</p>
       </div>
   </div>     

@@ -48,15 +48,17 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
         <header class="f_header"> 
         <div class="f_users">
 
-			<p>Пользователь,  
-			      <?php if (!empty($_SESSION['id'])) 
+			<p>Пользователь:  
+			      <?php 
+				  echo nl2br("\n");
+				  if (!empty($_SESSION['id'])) 
 			      // тут понятно и просто
 			      // если авторизован выводим ФИО пользователя
 			      {
 			      echo $_SESSION['Familiya'];
-			      echo "  ";
+			      echo nl2br("\n");
 			      echo $_SESSION['Name'];
-			      echo "  ";
+			      echo nl2br("\n");
 			      echo $_SESSION['Otchestvo'];
                     }
                     else
@@ -68,7 +70,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
                 <h1>Портфолио – это не только дань моде
 			   </h1>
 			   
-                 <nav style="">
+                 <nav style="bottom: 0">
 	                 <li><a  href="index.php">Главная</a></li> 
 	                 <li><a  href="users.php">Регистрация</a> </li>
                  <?php if (!empty($_SESSION['id'])) // здесь происходит следующее
@@ -83,7 +85,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
 			     
 	                 <li><a  href="chek.php">Личный кабинет</a> </li>
                  <?php }?>
-                  <li><a  href="admin.php">Администратор</a> </li>
+                  <!-- <li><a  href="admin.php">Администратор</a> </li> -->
                   <li>
 			<form action="" method="post">
 			<button class="f_exit" type="submit" name="exit" value="999">Выход </button>
@@ -91,7 +93,8 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
 				if (isset($_POST['exit'])&&($_POST['exit']==999)) {
 					$_SESSION = array(); // или $_SESSION = array() для очистки всех данных сессии
 					session_destroy();
-          ?>	<script>  window.location = '../index.php'; </script><?php
+
+					?>	<script> window.setTimeout(function() { window.location = '../index.php'; }, 0) </script><?php
 					header('Location: index.php');
 					}
 				?>
@@ -121,9 +124,19 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
             <hr>
             <h1 class="page-header">Профиль</h1>
           <ul class="nav nav-sidebar">
-            <li><a href="">Редактировать</a></li>
+          <?php
+          if ($_SESSION['Tip_user']=="Администратор") {?>
+          <input type="button" onclick="location.href='admin.php';" class="btn btn-default" data-dismiss="modal" style="width: 200px;" value="Админ панель" />
+          <?php
+            }?>
+          <li><a href="">Редактировать</a></li>
+          <?php
+          if ($_SESSION['Tip_user']!="Администратор") {?>
             <li>
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Удалить" onclick="AjaxFormRequest('<? echo $_SESSION['id']; ?>', 'rm_profile.php'); window.setTimeout(function() { window.location = '../index.php'; }, 100);" /></li>
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Удалить" style="width: 200px; background-color: red;"onclick="AjaxFormRequest('<? echo $_SESSION['id']; ?>', 'rm_profile.php'); window.setTimeout(function() { window.location = '../index.php'; }, 100);" />
+            </li>
+            <?php
+            }?>
           </ul>
           <hr>
           
@@ -396,6 +409,13 @@ enctype='multipart/form-data' это нужно для загрузки файл
 	      </div>
 	    </div>
 	</div>
+  <div class="container">
+  <br>
+  <br>
+      <div class ="f_footer">
+        <p> © Все права защищены 2023г. разработчиками</p>
+      </div>
+  </div> 
 	 <!-- подключение JQuery -->
 	 <script src="js/jquery-3.2.1.min.js"></script>
    <!-- подключение bootstrap.js-->

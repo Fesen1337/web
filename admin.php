@@ -142,14 +142,16 @@ while ($row = $stmt->fetch())
                }   
                 ?>
 
-<?php echo $tmp_id?>
+<?php echo $tmp_v?>
                 </td>
                   <td><?php echo $row['Name_dostijeniya'];?></td>
                   <td><?php echo $row['Name_yrovnya'];?></td>
                   <td><?php echo $row['Name_rezult'];?></td>
                   <td>
 <!-- всплывашка -->
+
 <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><a href="#modal<?php echo $row['Kod_kriteriya']?>">Информация</a></button>
+
 
 
 <script>
@@ -240,7 +242,6 @@ while ($row_n = $stmt_n->fetch())
 <!-- завершение всплывашек -->
                 
                   </td>
-                  <td><?php echo $row['Kod_dostijeniya'];?></td>
                   <td><?php echo $row['Data_nachala'];?></td>
                   <td><?php echo $row['Data_konec'];?></td>
                   <td><?php echo 
