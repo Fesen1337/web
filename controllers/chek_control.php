@@ -66,7 +66,8 @@ if ($tmp_locic == false) // если пользователь не найден
     	echo "Пользователь с таким Логином и Паролем не сущетсвует";
         ?>    
     <p>Через 5 секунд будет произведено перенаправление на страницу регистрации пользоватлей</p>
-   <script> window.setTimeout(function() { window.location = '../users.php'; }, 5000) </script>
+   <script> window.setTimeout(function() { window.location = '../chek.php';}, 0);
+   alert("Пользователь с таким Логином и Паролем не существует"); </script>
 <?php
        }
 
@@ -74,9 +75,8 @@ if ($tmp_locic == false) // если пользователь не найден
 // сделаем редирект (переход) на страницу пользователя
 
 if (!empty($_SESSION['id'])) { 
-?>    
-    <p>Через 5 секунд будет произведено перенаправление в личный кабинет</p>
-   <script> window.setTimeout(function() { window.location = '../lk.php'; }, 5000) </script>
+?>
+   <script> window.setTimeout(function() { window.location = '../lk.php'; }, 0) </script>
 <?php
 } 
 

@@ -71,6 +71,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
 				if (isset($_POST['exit'])&&($_POST['exit']==999)) {
 					$_SESSION = array(); // или $_SESSION = array() для очистки всех данных сессии
 					session_destroy();
+          ?>	<script>  window.location = '../index.php'; </script><?php
 					header('Location: index.php');
 					}
 				?>
@@ -286,7 +287,7 @@ enctype='multipart/form-data' это нужно для загрузки файл
                         <p>Наименование</p>
                         <p>Уровень</p>
                         <p>Статус</p>
-                        <p>Описание файла</p>
+                        <p>Описание достижения</p>
                 </div>
                   <div class="f_input_1">
                        <p><input placeholder="Достижение" !required="" name="Name_dostijeniya" type="text" size="30" class="pol"> </p>
@@ -309,7 +310,7 @@ enctype='multipart/form-data' это нужно для загрузки файл
                         <option value="3 место" >3 место</option>
                      </select>
                  </p>
-                <p><input placeholder="Название файла" !required="" name="Name_file" type="text" size="30" class="pol"> </p>
+                <p><input placeholder="Описание" !required="" name="Name_file" type="text" size="30" class="pol"> </p>
 
 
                   </div>

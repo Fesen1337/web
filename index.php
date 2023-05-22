@@ -69,6 +69,8 @@ session_start(); // стратуем сессию, чтобы использов
 				if (isset($_POST['exit'])&&($_POST['exit']==999)) {
 					$_SESSION = array(); // или $_SESSION = array() для очистки всех данных сессии
 					session_destroy();
+
+					?>	<script> window.setTimeout(function() { window.location = '../index.php'; }, 0) </script><?php
 					header('Location: index.php');
 					}
 				?>
