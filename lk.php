@@ -131,7 +131,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
             }?>
           <li><a href="">Редактировать</a></li>
           <?php
-          if ($_SESSION['Tip_user']!="Администратор") {?>
+          if ($_SESSION['Tip_user']=="Администратор") {?>
             <li>
                     <input type="button" class="btn btn-danger" data-dismiss="modal" value="Удалить" style="width: 200px; background-color: red;"onclick="AjaxFormRequest('<? echo $_SESSION['id']; ?>', 'rm_profile.php'); window.setTimeout(function() { window.location = '../index.php'; }, 100);" />
             </li>
