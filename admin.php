@@ -267,8 +267,8 @@ while ($row_n = $stmt_n->fetch())
                   <? //echo $_POST['$tmp_index']; 
 
                   ?>
-         <div id="id<? echo $_POST['$tmp_index']; ?>">
-            Тут будет вывод нашей формы<br/>
+         <!-- <div id="id<? echo $_POST['$tmp_index']; ?>">
+            Тут будет вывод нашей формы<br/> -->
           
             
         <!-- </div>  -->

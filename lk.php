@@ -32,6 +32,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
                 dataType: "html", //Тип данных
                 data: { res: result_id}, 
                 success: function(response) { //Если все нормально
+
                 // document.getElementById(result_id).innerHTML = response;
             },
             error: function(response) { //Если ошибка
@@ -121,7 +122,8 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
             <h1 class="page-header">Профиль</h1>
           <ul class="nav nav-sidebar">
             <li><a href="">Редактировать</a></li>
-            <li><a href="">Удалить</a></li>
+            <li>
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Удалить" onclick="AjaxFormRequest('<? echo $_SESSION['id']; ?>', 'rm_profile.php'); window.setTimeout(function() { window.location = '../index.php'; }, 100);" /></li>
           </ul>
           <hr>
           
