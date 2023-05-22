@@ -21,7 +21,26 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
 	   <link rel="stylesheet" href="css/lk.css">
       <link rel="stylesheet" type="text/css" href="css/main.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
 
+        
+        function AjaxFormRequest(result_id,url) {
+            jQuery.ajax({
+                url:     url, //Адрес подгружаемой страницы
+                type:     "POST", //Тип запроса
+                dataType: "html", //Тип данных
+                data: { res: result_id}, 
+                success: function(response) { //Если все нормально
+                // document.getElementById(result_id).innerHTML = response;
+            },
+            error: function(response) { //Если ошибка
+            // document.getElementById(result_id).innerHTML = "Ошибка при отправке формы";
+            }
+          });
+    }
+
+   </script>
 </head>
 <body class>
 <div class="container">
@@ -254,14 +273,19 @@ while ($row_n = $stmt_n->fetch())
                   ?></td>
                <?php    if ($row['Kod_podtverjdeniya']==1) 
                {?>
-                  <td class="f_green">Подвержден</td>
+                  <td class="f_green">Подтвержден</td>
                   <?
                 } 
                   else {
                   ?>
                   <td class="f_red">Не подтвержден</td>
                   <?php } ?>
-                  <td><button type="button" class="btn btn-default" data-dismiss="modal">Удалить</button></td>
+                  <td>
+           <!--  Имя: <input type="text" name="name" value="Антон" /><br/> -->
+           <!--  Телефон: <input type="text" name="phone" value="8(916)124-234-122" /><br/> -->
+          <!--   Сайт: <input type="text" name="site" value="http://ox2.ru/" /><br/> -->
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Удалить" onclick="AjaxFormRequest('<? echo $row['Kod_dostijeniya']; ?>', 'rm_ach.php');location.reload();" />
+                  </td>
                 <!-- <td><?php echo $row['Data_konec'];?></td> -->
                
                 </tr>
