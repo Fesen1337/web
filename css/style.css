@@ -4,7 +4,7 @@ body{
    margin-right: auto; /* Отступ справа */
    margin-left: auto; /* Отступ слева */
    margin-top: 0px; /* Устанавливаем отступ сверху */
-   background-image:url(../images/fon1.png) ;
+   background-color: white;
    background-attachment: fixed;
    background-size: cover; 
    border:0px solid #333;

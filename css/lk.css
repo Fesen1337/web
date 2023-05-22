@@ -10,6 +10,7 @@
 .f_users p {
 	color: #0080DB;
 	font-size: 20px;
+	float: right;
 }
 
 .bl_forma {

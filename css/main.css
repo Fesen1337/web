@@ -39,7 +39,7 @@
 
 .f_footer {                           
        text-align: center;
-    /* width: 980px; */
+    width: 1160px;
     height: 50px;
     background: #DDA0DD;
     /* margin-top: 250px; */
@@ -49,6 +49,8 @@
     margin-top: 5px;
     padding-top: 18px;
     font-size: 16px;
+    bottom: 0;
+    position:absolute;
  }
 
  .f_nav {
@@ -90,7 +92,7 @@ font-weight: bold;
 padding: 7px 70px;
 text-align: center;
 text-shadow: 0 -1px 0 #ad2b56;
-margin-left: 328px;
+margin-left: 400px;
 }
 
 button.f_submit:hover {
@@ -162,7 +164,7 @@ box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
  }
 
  .full_fon {
-     background-image:url(../images/fon1.png) ;
+     background-color: white;
  }
 
  .f_form-control {
@@ -192,7 +194,7 @@ border-radius: 3px 3px 0 0;
    background: #D8BFD8;
  /*Цвет фона блока под логин и пароль */
    border-radius: 3px;
-  
+   height: 120px;
   -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
   
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);

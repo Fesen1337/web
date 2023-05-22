@@ -3,7 +3,7 @@ body {
    width:680px; 
    font: 15px/34px "Times New Roman", Times, serif;
    color: #404040;
-   background-image:url(../images/fon1.png) ;
+   background-color: white;
    background-attachment: fixed;
    background-size: cover;;
    margin: 20px auto;    

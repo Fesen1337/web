@@ -12,7 +12,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
 <head>
 	<meta charset="UTF-8">
 	<title>Портфолио студента</title>
-
+  
 	<!-- подключение bootstrap (бутстрап)-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
@@ -20,32 +20,72 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
 	<!-- подключение  стилей панеля управления-->
 	   <link rel="stylesheet" href="css/lk.css">
       <link rel="stylesheet" type="text/css" href="css/main.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
-<body>
-<div class="f_users">
-<p>Пользователь 
-      <?php 
-      echo $_SESSION['Familiya'];
-      echo "  ";
-      echo $_SESSION['Name'];
-      echo "  ";
-      echo $_SESSION['Otchestvo'];
+<body class>
+<div class="container">
+        <header class="f_header"> 
+        <div class="f_users">
 
-      ?>
-</p>
-</div>
+			<p>Пользователь,  
+			      <?php if (!empty($_SESSION['id'])) 
+			      // тут понятно и просто
+			      // если авторизован выводим ФИО пользователя
+			      {
+			      echo $_SESSION['Familiya'];
+			      echo "  ";
+			      echo $_SESSION['Name'];
+			      echo "  ";
+			      echo $_SESSION['Otchestvo'];
+                    }
+                    else
+                    	// если же нет, то выводим как гость
+                    	echo "Гость";
+			      ?>
+			</p>
+		</div>
+                <h1>Портфолио – это не только дань моде
+			   </h1>
+			   
+                 <nav style="">
+	                 <li><a  href="index.php">Главная</a></li> 
+	                 <li><a  href="users.php">Регистрация</a> </li>
+                 <?php if (!empty($_SESSION['id'])) // здесь происходит следующее
+                 // если пользователь авторизован направляем его в личный кабинет
+			      {?>
+                      <li><a  href="lk.php">Личный кабинет</a> </li>
+			     <?php }
+			     // если же не автоизован направляем его на 
+			     // страницу входа в систему
+                       else
+			      {?>
+			     
+	                 <li><a  href="chek.php">Личный кабинет</a> </li>
+                 <?php }?>
+                  <li><a  href="admin.php">Администратор</a> </li>
+                  <li>
+			<form action="" method="post">
+			<button class="f_exit" type="submit" name="exit" value="999">Выход </button>
+				<?php 
+				if (isset($_POST['exit'])&&($_POST['exit']==999)) {
+					$_SESSION = array(); // или $_SESSION = array() для очистки всех данных сессии
+					session_destroy();
+					header('Location: index.php');
+					}
+				?>
+			</form>
+                  </li>
+                </nav>
+        </header>
+    </div> <!-- container -->
 	 <div class="container-fluid">
 	  <div class="row">
 	      <div class="col-xs-3 col-md-2"><!-- левый сайдбар информативного поля -->
-	       <h1 class="page-header">Меню</h1>
 	      	<ul class="nav nav-sidebar">
-            <li class="active"><a href="index.php">Главная <span class="sr-only">(current)</span></a></li>
-            <li><a href="admin.php">Администратор</a></li>
             <li>
 
             <form action="" method="post">
-      <button class="f_exit" type="submit" name="exit2" value="999">Выход </button>
         <?php 
         if (isset($_POST['exit2'])&&($_POST['exit2']==999)) {
           $_SESSION = array(); // или $_SESSION = array() для очистки всех данных сессии
@@ -67,7 +107,7 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
           
 
 	      </div>
-	      <div class="col-xs-15 col-sm-6 col-md-10"> <!-- основное информативное поле -->
+	      <div class="col-xs-15 col-sm-6 col-md-10" style="width: 1160px;"> <!-- основное информативное поле -->
 
 	       <h1 class="page-header">Личный кабинет</h1>
 
@@ -129,6 +169,7 @@ while ($row = $stmt->fetch())
                   <th>Дата завершения</th>
                   <th>Комментарии</th>
                   <th>Подтверждение</th>
+                  <th></th>
                  
                 </tr>
               </thead>
@@ -219,6 +260,8 @@ while ($row_n = $stmt_n->fetch())
                   ?>
                   <td class="f_red">Не подтвержден</td>
                   <?php } ?>
+                  <td><button type="button" class="btn btn-default" data-dismiss="modal">Удалить</button></td>
+                <!-- <td><?php echo $row['Data_konec'];?></td> -->
                
                 </tr>
 <?php } // if
@@ -244,7 +287,6 @@ enctype='multipart/form-data' это нужно для загрузки файл
                         <p>Уровень</p>
                         <p>Статус</p>
                         <p>Описание файла</p>
-                        <p>Добавить файл: </p>
                 </div>
                   <div class="f_input_1">
                        <p><input placeholder="Достижение" !required="" name="Name_dostijeniya" type="text" size="30" class="pol"> </p>
@@ -269,10 +311,6 @@ enctype='multipart/form-data' это нужно для загрузки файл
                  </p>
                 <p><input placeholder="Название файла" !required="" name="Name_file" type="text" size="30" class="pol"> </p>
 
-                 <p>
-                 <!-- загрузка файла -->
-                 <input type='file' name='inputfile' size='10' />   
-                 </p>
 
                   </div>
 
