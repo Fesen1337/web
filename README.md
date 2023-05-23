@@ -14,6 +14,3 @@ css - файлы стилей (включая бутстрап)
 images - файлы изображений
 js -  файлы JavaScript- скриптов
 sql - файлы структуры бд
-
-Ссылка на сайт http://student.uxp.ru
-Ссылка на репозитарий https://github.com/as7bzx92dd/student
