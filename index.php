@@ -63,7 +63,7 @@ session_start(); // стратуем сессию, чтобы использов
                        else
 			      {?>
 			     
-	                 <li><a  href="chek.php">Личный кабинет</a> </li>
+	                 <li><a  href="index.php">Личный кабинет</a> </li>
                  <?php }?>
                   <!-- <li><a  href="admin.php">Администратор</a> </li> -->
                   <li>
@@ -152,6 +152,44 @@ if ($tmp_counter==5) break; // так как топ 5 прекращаем вы�
 
 	        </div> <!-- col-md-3 -->
 	        <div class="col-md-8">
+			<?php
+			if (empty($_SESSION['id'])) {
+			?>
+			<div class="f_login_pass">
+    <h3>Вход в личный кабинет</h3>
+    <form class="form-horizontal" role="form" action="controllers/chek_control.php" method="post">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Логин</label>
+        <div class="col-sm-10">
+          <input type="text" class="f_form-control" id="inputEmail3" name = "log" placeholder="Логин">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
+        <div class="col-sm-10">
+          <input type="password" class="f_form-control" name = "pass" id="inputPassword3" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="box"> Запомнить меня
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Войти</button>
+        </div>
+      </div>
+    </form>
+
+</div>
+<?php
+} else {
+?>
 				<div class="f_content">   <!--А в этом блоке расположен контент-->
 				    <h1>Здравствуй, Дорогой студент!</h1>
 				         <p>На нашем сайте Вы можете заполнить свой портфель достижений. </p>
@@ -160,6 +198,9 @@ if ($tmp_counter==5) break; // так как топ 5 прекращаем вы�
 							персоне. Рекомендуется вести портфолио своих успехов и достижений с первых дней учебы в вузе.
 				          </p>
 				 </div>
+<?php
+} 
+?>
 	       </div><!-- col-md-9-->
       
       </div>
