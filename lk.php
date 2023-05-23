@@ -129,7 +129,10 @@ if (!empty($_SESSION['id'])) { //id достаем из сессии
           <input type="button" onclick="location.href='admin.php';" class="btn btn-default" data-dismiss="modal" style="width: 200px;" value="Админ панель" />
           <?php
             }?>
-          <li><a href="">Редактировать</a></li>
+          <li>
+            <input type="button" onclick="location.href='edit.php';" class="btn btn-default" data-dismiss="modal" style="width: 200px;" value="Редактировать" />
+          </li>
+
           <?php
           if ($_SESSION['Tip_user']!="Администратор") {?>
             <li>

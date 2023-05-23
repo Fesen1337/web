@@ -57,17 +57,6 @@ if (!empty($_SESSION['id'])&&($_SESSION['Tip_user']=="Администратор
                     <li><a href="index.php"><i class="fa fa-tasks"></i>Главная</a></li>                    
                     <li><a href="lk.php"><i class="fa fa-globe"></i>Личный кабинет</a></li>
                     <li>
-<form action="" method="post">
-            <button class="f_exit" type="submit" name="exit" value="999">Выход </button>
-                <?php 
-                if (isset($_POST['exit'])&&($_POST['exit']==999)) {
-                    $_SESSION = array(); // или $_SESSION = array() для очистки всех данных сессии
-                    session_destroy();
-                     // <script> window.setTimeout(function() { window.location = '../index.php'; }, 5000) </script>
-                    // header('Location: index.php');
-                    }
-                ?>
-</form>
 
 
 
